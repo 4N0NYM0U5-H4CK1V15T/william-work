@@ -5,7 +5,7 @@ Created on Fri Jul 27 10:41:51 2018
 @author: William
 """
 
-class add:
+class Add:
     def __init__(self,leftNumb,rightNumb):
         self.lNumb = leftNumb
         self.rNumb = rightNumb
