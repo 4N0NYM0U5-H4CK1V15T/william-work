@@ -28,6 +28,10 @@ class TestMaths(unittest.TestCase):
         temp = Divide(3,2)
         self.assertEqual(temp.evaluate(), 1.5)
         
+    def test_Strings(self):         #not accually needed
+        temp = Add("2","3")
+        self.assertEqual(temp.evaluate(), "23")
+        
     
 if __name__ == '__main__':
     unittest.main()
