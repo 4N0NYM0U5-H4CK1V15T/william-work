@@ -30,7 +30,8 @@ class TestMaths(unittest.TestCase):
         
     def test_Strings(self):         #not accually needed
         temp = Add("2","3")
-        self.assertEqual(temp.evaluate(), "23")
+        self.assertEqual(temp.evaluate(), 5)
+        self.assertEqual(Add("2",3).evaluate(), 5)
         
     
 if __name__ == '__main__':
