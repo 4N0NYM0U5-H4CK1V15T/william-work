@@ -5,16 +5,11 @@ Created on Fri Jul 27 10:41:51 2018
 @author: William
 """
 
-class sum:
-    def __init__(self,numb1,numb2):
-        self.n1 = numb1
-        self.n2 = numb2
+class add:
+    def __init__(self,leftNumb,rightNumb):
+        self.lNumb = leftNumb
+        self.rNumb = rightNumb
     def evaluate(self):
-        sum = self.n1 + self.n2
+        sum = self.lNumb + self.rNumb
         return sum
     
-def test():
-    a = sum(2,3)
-    return a.evaluate()
-
-print(test())
