@@ -34,8 +34,15 @@ class TestMaths(unittest.TestCase):
         self.assertEqual(Add("2",3).evaluate(), 5)
     
     def test_Expressions(self):
-        temp= Add(2,Multiply(3,4))
+        temp = Add(2,Multiply(3,4))
         self.assertEqual(temp.evaluate(), 14)
+        
+    def test_Str(self):
+        temp = Add(2,3)
+        self.assertEqual(str(temp), "(2 + 3)")
+        self.assertEqual(str(Subtract(5,6)), "(5 - 6)")
+        self.assertEqual(str(Subtract(5,Multiply(7,9))), "(5 - (7 * 9))")
+        self.assertEqual(str(Multiply(5,Subtract(7,9))), "(5 * (7 - 9))")
         
     
 if __name__ == '__main__':
