@@ -9,7 +9,8 @@ import unittest
 from maths.Add import Add            #Imports other classes
 from maths.Subtract import Subtract
 from maths.Multiply import Multiply
-from maths.Divide import Divide
+from parser.tokens import tokens
+
 
 class TestMaths(unittest.TestCase):
     def test_Add(self):
@@ -43,6 +44,10 @@ class TestMaths(unittest.TestCase):
         self.assertEqual(str(Subtract(5,6)), "(5 - 6)")
         self.assertEqual(str(Subtract(5,Multiply(7,9))), "(5 - (7 * 9))")
         self.assertEqual(str(Multiply(5,Subtract(7,9))), "(5 * (7 - 9))")
+    
+    def test_Tokens(self):
+        temp = "123 + 45"
+        self.assertEqual(tokens(temp), ["123","+","45"])
         
     
 if __name__ == '__main__':
