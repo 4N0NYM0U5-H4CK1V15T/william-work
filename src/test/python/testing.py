@@ -9,7 +9,8 @@ import unittest
 from maths.Add import Add            #Imports other classes
 from maths.Subtract import Subtract
 from maths.Multiply import Multiply
-from parser.tokens import tokens
+from maths.Divide import Divide
+from maths.Parser import Parser
 
 
 class TestMaths(unittest.TestCase):
@@ -47,7 +48,15 @@ class TestMaths(unittest.TestCase):
     
     def test_Tokens(self):
         temp = "123 + 45"
-        self.assertEqual(tokens(temp), ["123","+","45"])
+        self.assertEqual(Parser.tokens(temp), ["123","+","45"])
+        
+    def test_Tokens2(self):
+        temp = "12.3 + 45"
+        self.assertEqual(Parser.tokens(temp), ["12.3","+","45"])
+        
+    def test_Tokens3(self):
+        temp = "(123 + 45)/2"
+        self.assertEqual(Parser.tokens(temp), ["(","123","+","45",")","/","2"])
         
     
 if __name__ == '__main__':
