@@ -5,11 +5,11 @@ Created on Fri Jul 27 12:01:17 2018
 @author: William
 """
 
-from maths.Expression import Expression
+from maths.BinaryExpression import BinaryExpression
 
-class Subtract(Expression):
+class Subtract(BinaryExpression):
     def __init__(self,l,r):
-        Expression.__init__(self,l,r,"-")    #imported to from the main expression where it has been checked
+        BinaryExpression.__init__(self,l,r,"-")    #imported to from the main expression where it has been checked
     def evaluate(self):
         sum = self.left() - self.right()        #these functions are imported from expression master function
         return sum

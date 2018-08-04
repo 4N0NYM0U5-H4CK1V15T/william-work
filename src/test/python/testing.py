@@ -48,15 +48,15 @@ class TestMaths(unittest.TestCase):
     
     def test_Tokens(self):
         temp = "123 + 45"
-        self.assertEqual(Parser.tokens(temp), ["123","+","45"])
+        self.assertEqual(Parser.tokens(temp), [123, "+", 45 ])
         
     def test_Tokens2(self):
         temp = "12.3 + 45"
-        self.assertEqual(Parser.tokens(temp), ["12.3","+","45"])
+        self.assertEqual(Parser.tokens(temp), [12.3 ,"+",45 ])
         
     def test_Tokens3(self):
         temp = "(123 + 45)/2"
-        self.assertEqual(Parser.tokens(temp), ["(","123","+","45",")","/","2"])
+        self.assertEqual(Parser.tokens(temp), ["(", 123 ,"+", 45 ,")","/", 2 ])
         
     
 if __name__ == '__main__':

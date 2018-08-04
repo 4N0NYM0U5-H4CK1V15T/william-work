@@ -20,14 +20,24 @@ class Parser:
                 
         def isNumeric(s):
            return (ord(s) in range(48,58) or s == ".")
+       
+        def numbToFloat(s):
+            try:
+                float(s)
+                return float(s)           
+            except ValueError:
+                return(s)
         
         for x in range(0, len(strList)):
             if isNumeric(strList[x]):
                 temp = temp + strList[x]
             else:
-                record(temp)
+                record(numbToFloat(temp))
                 temp = ""
                 record(strList[x])
         
-        record(temp)
+        record(numbToFloat(temp))
         return finalList
+    
+    def parser(s):
+        pass
