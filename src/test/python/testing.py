@@ -58,6 +58,10 @@ class TestMaths(unittest.TestCase):
         temp = "(123 + 45)/2"
         self.assertEqual(Parser.tokens(temp), ["(", 123 ,"+", 45 ,")","/", 2 ])
         
+    def test_Tokens4(self):
+        with self.assertRaises(ValueError):
+            Parser.tokens("12.3.3 + 45")
+        
     
 if __name__ == '__main__':
     unittest.main()

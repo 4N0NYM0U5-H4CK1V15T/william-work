@@ -15,28 +15,26 @@ class Parser:
         temp = ""
         
         def record(s):
-            if (s != '' and s != ' '):
+            if (s == '' or s == ' '):
+                return
+            if isNumeric(s[0]):
+                finalList.append(float(s))
+            else:
                 finalList.append(s)
                 
         def isNumeric(s):
            return (ord(s) in range(48,58) or s == ".")
        
-        def numbToFloat(s):
-            try:
-                float(s)
-                return float(s)           
-            except ValueError:
-                return(s)
         
         for x in range(0, len(strList)):
             if isNumeric(strList[x]):
                 temp = temp + strList[x]
             else:
-                record(numbToFloat(temp))
+                record(temp)
                 temp = ""
                 record(strList[x])
         
-        record(numbToFloat(temp))
+        record(temp)
         return finalList
     
     def parser(s):
