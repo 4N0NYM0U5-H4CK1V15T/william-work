@@ -11,7 +11,7 @@ from maths.Subtract import Subtract
 from maths.Multiply import Multiply
 from maths.Divide import Divide
 from maths.Parser import Parser
-
+from maths.Constant import Constant
 
 class TestMaths(unittest.TestCase):
     def test_Add(self):
@@ -61,7 +61,19 @@ class TestMaths(unittest.TestCase):
     def test_Tokens4(self):
         with self.assertRaises(ValueError):
             Parser.tokens("12.3.3 + 45")
-        
+            
+    def test_Equals(self):
+        a = Subtract(5,6)
+        b = Subtract(5,6)
+        self.assertEqual(a, b)
+
+    def test_Parse(self):
+        self.assertIsNone(Parser.parse(""))
+        self.assertEqual(Parser.parse("12"), Constant(12))
+        self.assertEqual(Parser.parse("12.3 + 4.5"), Add(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 - 4.5"), Subtract(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(12.3, 4.5))
     
 if __name__ == '__main__':
     unittest.main()

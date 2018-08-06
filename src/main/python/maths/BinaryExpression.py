@@ -18,6 +18,8 @@ class BinaryExpression(Expression):       #This class a several sub classes that
     def right(self):
         return self.valueOf(self.rightVal)
         
-    def __str__(self):
+    def __str__(self):  #called by python when it tries to convert the object to a string
         return "(" + str(self.leftVal) + " " + self.symbol + " " + str(self.rightVal) + ")"
             
+    def __eq__(self, other):    #called by python when two objects == each other
+        return isinstance(other, BinaryExpression) and self.leftVal == other.leftVal and self.rightVal == other.rightVal and self.symbol == other.symbol
