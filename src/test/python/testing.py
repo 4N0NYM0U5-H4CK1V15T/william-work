@@ -70,10 +70,11 @@ class TestMaths(unittest.TestCase):
     def test_Parse(self):
         self.assertIsNone(Parser.parse(""))
         self.assertEqual(Parser.parse("12"), Constant(12))
-        self.assertEqual(Parser.parse("12.3 + 4.5"), Add(12.3, 4.5))
-        self.assertEqual(Parser.parse("12.3 - 4.5"), Subtract(12.3, 4.5))
-        self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(12.3, 4.5))
-        self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 + 4.5"), Add(Constant(12.3), 4.5))
+        self.assertEqual(Parser.parse("12.3 - 4.5"), Subtract(Constant(12.3), 4.5))
+        self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(Constant(12.3), 4.5))
+        self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(Constant(12.3), 4.5))
+        self.assertEqual(Parser.parse("12.3 + 4.5 + 6.7"), Add(Add(Constant(12.3), 4.5), 6.7))
     
 if __name__ == '__main__':
     unittest.main()

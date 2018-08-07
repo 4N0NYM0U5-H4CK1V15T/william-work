@@ -12,6 +12,7 @@ from maths.Divide import Divide
 from maths.Constant import Constant
 
 class Parser:
+    
     def __init__(self):
         pass
     
@@ -44,26 +45,33 @@ class Parser:
         return finalList
     
     def parse(s):
+        acc = None
+        operator = None        
+        
+        def isoperator(s):
+            return s in ['+','-','*','/']
+        
         toks = Parser.tokens(s)
-        tokenCount = len(toks)
-        if tokenCount == 0:
-            return None
-        if tokenCount == 1:
-            return Constant(toks[0])
-        if tokenCount != 3:
-            return None
-        
-        left = toks[0]
-        symbol = toks[1]
-        right = toks[2]
-        
-        if symbol == "+":
-            return Add(left, right)
-        elif symbol == "-":
-            return Subtract(left, right)
-        elif symbol == "*":
-            return Multiply(left, right)
-        elif symbol == "/":
-            return Divide(left, right)
+        for tok in toks:
+            if isoperator(tok):
+                operator = tok
+            else: # Otherwise, assume that tok is a number
+                if acc is None:
+                    acc = Constant(tok)
+                elif operator == None:
+                    raise ValueError("No operator found before " + tok)
+                else:
+                    if operator == "+":
+                        acc = Add(acc, tok)
+                    elif operator == "-":
+                        acc =  Subtract(acc, tok)
+                    elif operator == "*":
+                        acc =  Multiply(acc, tok)
+                    elif operator == "/":
+                        acc =  Divide(acc, tok)
+ 
+                operator = None
+            
+        return acc
         
         
