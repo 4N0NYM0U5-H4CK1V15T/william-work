@@ -14,6 +14,11 @@ from maths.Parser import Parser
 from maths.Constant import Constant
 
 class TestMaths(unittest.TestCase):
+    def test_Constant(self):
+        self.assertEqual(Constant(5).evaluate(), 5)
+        self.assertEqual(Constant(5.5).evaluate(), 5.5)
+        self.assertEqual(Constant("-7.9").evaluate(), -7.9)
+        
     def test_Add(self):
         temp = Add(2,3)
         self.assertEqual(temp.evaluate(), 5)    #(this part is what is executed, this part is what it should be)
@@ -41,10 +46,10 @@ class TestMaths(unittest.TestCase):
         
     def test_Str(self):
         temp = Add(2,3)
-        self.assertEqual(str(temp), "(2 + 3)")
-        self.assertEqual(str(Subtract(5,6)), "(5 - 6)")
-        self.assertEqual(str(Subtract(5,Multiply(7,9))), "(5 - (7 * 9))")
-        self.assertEqual(str(Multiply(5,Subtract(7,9))), "(5 * (7 - 9))")
+        self.assertEqual(str(temp), "(2.0 + 3.0)")
+        self.assertEqual(str(Subtract(5,6)), "(5.0 - 6.0)")
+        self.assertEqual(str(Subtract(5,Multiply(7,9))), "(5.0 - (7.0 * 9.0))")
+        self.assertEqual(str(Multiply(5,Subtract(7,9))), "(5.0 * (7.0 - 9.0))")
     
     def test_Tokens(self):
         temp = "123 + 45"
@@ -70,11 +75,11 @@ class TestMaths(unittest.TestCase):
     def test_Parse(self):
         self.assertIsNone(Parser.parse(""))
         self.assertEqual(Parser.parse("12"), Constant(12))
-        self.assertEqual(Parser.parse("12.3 + 4.5"), Add(Constant(12.3), 4.5))
-        self.assertEqual(Parser.parse("12.3 - 4.5"), Subtract(Constant(12.3), 4.5))
-        self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(Constant(12.3), 4.5))
-        self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(Constant(12.3), 4.5))
-        self.assertEqual(Parser.parse("12.3 + 4.5 + 6.7"), Add(Add(Constant(12.3), 4.5), 6.7))
+        self.assertEqual(Parser.parse("12.3 + 4.5"), Add(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 - 4.5"), Subtract(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3 + 4.5 + 6.7"), Add(Add(12.3, 4.5), 6.7))
     
 if __name__ == '__main__':
     unittest.main()

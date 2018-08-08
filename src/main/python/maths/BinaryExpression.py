@@ -5,21 +5,28 @@ Created on Fri Jul 27 14:42:30 2018
 @author: William
 """
 
+from maths.Constant import Constant
 from maths.Expression import Expression
 
 class BinaryExpression(Expression):       #This class a several sub classes that it runs to 
-    def __init__(self,leftVal,rightVal,symbol):
-        self.leftVal = leftVal
-        self.rightVal = rightVal
+    def __init__(self,l,r,symbol):
+        def asExpression(x):
+            if isinstance(x,Expression):
+                return x
+            else:
+                return Constant(x)
+            
+        self.leftExpression = asExpression(l)
+        self.rightExpression = asExpression(r)
         self.symbol = symbol
         
     def left(self):
-        return self.valueOf(self.leftVal)    #valueOf is the expression used to check that it is a int
+        return self.leftExpression.evaluate()
     def right(self):
-        return self.valueOf(self.rightVal)
+        return self.rightExpression.evaluate()
         
     def __str__(self):  #called by python when it tries to convert the object to a string
-        return "(" + str(self.leftVal) + " " + self.symbol + " " + str(self.rightVal) + ")"
+        return "(" + str(self.leftExpression) + " " + self.symbol + " " + str(self.rightExpression) + ")"
             
     def __eq__(self, other):    #called by python when two objects == each other
-        return isinstance(other, BinaryExpression) and self.leftVal == other.leftVal and self.rightVal == other.rightVal and self.symbol == other.symbol
+        return isinstance(other, BinaryExpression) and self.leftExpression == other.leftExpression and self.rightExpression == other.rightExpression and self.symbol == other.symbol
