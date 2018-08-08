@@ -6,19 +6,20 @@ Created on Fri Jul 27 14:42:30 2018
 """
 
 from maths.Expression import Expression
-
-class Constant(Expression):       #This class a several sub classes that it runs to 
+# Represents a constant numerical value
+class Constant(Expression): 
+    # Can be initialized with a number or string
     def __init__(self,value):
-        self.value = value
+        if isinstance(value, float):
+            self.numValue = value
+        else:
+            self.numValue = float(value)
         
-    def val(self):
-        return self.valueOf(self.value)    
-    
     def evaluate(self):
-        return self.val()
+        return self.numValue
         
     def __str__(self):  #called by python when it tries to convert the object to a string
-        return str(self.value)
+        return str(self.numValue)
             
     def __eq__(self, other):    #called by python when two objects == each other
-        return isinstance(other, Constant) and self.val() == other.val()
+        return isinstance(other, Constant) and self.numValue == other.numValue
