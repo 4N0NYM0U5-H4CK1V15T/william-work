@@ -11,6 +11,6 @@ class Subtract(BinaryExpression):
     def __init__(self,l,r):
         BinaryExpression.__init__(self,l,r,"-")    #imported to from the main expression where it has been checked
     def evaluate(self):
-        sum = self.left() - self.right()        #these functions are imported from expression master function
+        sum = self.leftEvaluated() - self.rightEvaluated()        #these functions are imported from expression master function
         return sum
     
