@@ -9,13 +9,13 @@ from maths.Expression import Expression
 # Represents a constant numerical value
 class Constant(Expression): 
     # Can be initialized with a number or string
-    def __init__(self,value):
-        if isinstance(value, float):
-            self.numValue = value
+    def __init__(self,v):
+        if isinstance(v, float):
+            self.numValue = v
         else:
-            self.numValue = float(value)
+            self.numValue = float(v)
         
-    def evaluate(self):
+    def value(self):
         return self.numValue
         
     def __str__(self):  #called by python when it tries to convert the object to a string

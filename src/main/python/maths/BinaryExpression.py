@@ -20,10 +20,10 @@ class BinaryExpression(Expression):       #This class a several sub classes that
         self.rightExpression = asExpression(r)
         self.symbol = symbol
         
-    def leftEvaluated(self):
-        return self.leftExpression.evaluate()
-    def rightEvaluated(self):
-        return self.rightExpression.evaluate()
+    def leftValue(self):
+        return self.leftExpression.value()
+    def rightValue(self):
+        return self.rightExpression.value()
         
     def __str__(self):  #called by python when it tries to convert the object to a string
         return "(" + str(self.leftExpression) + " " + self.symbol + " " + str(self.rightExpression) + ")"

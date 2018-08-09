@@ -15,34 +15,34 @@ from maths.Constant import Constant
 
 class TestMaths(unittest.TestCase):
     def test_Constant(self):
-        self.assertEqual(Constant(5).evaluate(), 5)
-        self.assertEqual(Constant(5.5).evaluate(), 5.5)
-        self.assertEqual(Constant("-7.9").evaluate(), -7.9)
+        self.assertEqual(Constant(5).value(), 5)
+        self.assertEqual(Constant(5.5).value(), 5.5)
+        self.assertEqual(Constant("-7.9").value(), -7.9)
         
     def test_Add(self):
         temp = Add(2,3)
-        self.assertEqual(temp.evaluate(), 5)    #(this part is what is executed, this part is what it should be)
+        self.assertEqual(temp.value(), 5)    #(this part is what is executed, this part is what it should be)
         
     def test_Subtract(self):
         temp = Subtract(3,2)
-        self.assertEqual(temp.evaluate(), 1)
+        self.assertEqual(temp.value(), 1)
         
     def test_Multiply(self):
         temp = Multiply(3,2)
-        self.assertEqual(temp.evaluate(), 6)
+        self.assertEqual(temp.value(), 6)
         
     def test_Divide(self):
         temp = Divide(3,2)
-        self.assertEqual(temp.evaluate(), 1.5)
+        self.assertEqual(temp.value(), 1.5)
         
     def test_Strings(self):         #not accually needed
         temp = Add("2","3")
-        self.assertEqual(temp.evaluate(), 5)
-        self.assertEqual(Add("2",3).evaluate(), 5)
+        self.assertEqual(temp.value(), 5)
+        self.assertEqual(Add("2",3).value(), 5)
     
     def test_Expressions(self):
         temp = Add(2,Multiply(3,4))
-        self.assertEqual(temp.evaluate(), 14)
+        self.assertEqual(temp.value(), 14)
         
     def test_Str(self):
         temp = Add(2,3)

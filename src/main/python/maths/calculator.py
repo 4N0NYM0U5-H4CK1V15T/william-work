@@ -10,4 +10,4 @@ from maths.Parser import Parser
 while True:
     userInput = input("Input: ")
     exp =  Parser.parse(userInput)
-    print(str(exp) + " = " + str(exp.evaluate()))
+    print(str(exp) + " = " + str(exp.value()))
