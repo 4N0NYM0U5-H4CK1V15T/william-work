@@ -80,6 +80,6 @@ class TestMaths(unittest.TestCase):
         self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(12.3, 4.5))
         self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(12.3, 4.5))
         self.assertEqual(Parser.parse("12.3 + 4.5 + 6.7"), Add(Add(12.3, 4.5), 6.7))
-    
+
 if __name__ == '__main__':
     unittest.main()
