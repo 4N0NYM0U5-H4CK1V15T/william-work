@@ -80,6 +80,18 @@ class TestMaths(unittest.TestCase):
         self.assertEqual(Parser.parse("12.3 * 4.5"), Multiply(12.3, 4.5))
         self.assertEqual(Parser.parse("12.3 / 4.5"), Divide(12.3, 4.5))
         self.assertEqual(Parser.parse("12.3 + 4.5 + 6.7"), Add(Add(12.3, 4.5), 6.7))
+        
+    def test_signs(self):
+        self.assertEqual(Parser.parse("-2"), Constant(-2))
+        self.assertEqual(Parser.parse("+3.5"), Constant(3.5))
+        self.assertEqual(Parser.parse(" -2"), Constant(-2))
+        self.assertEqual(Parser.parse("-12.3 + 4.5"),Add(-12.3, 4.5))
+        self.assertEqual(Parser.parse("-12.3 + -4.5"),Add(-12.3, -4.5))
+        self.assertEqual(Parser.parse("12.3 +4.5"), Add(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3-4.5"), Subtract(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3-+4.5"), Subtract(12.3, 4.5))
+        self.assertEqual(Parser.parse("12.3+-4.5"), Add(12.3, -4.5))
 
+        
 if __name__ == '__main__':
     unittest.main()

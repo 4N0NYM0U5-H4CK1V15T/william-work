@@ -29,10 +29,19 @@ class Parser:
             else:
                 finalList.append(s)
                 
-        def isNumeric(s):
-           return (ord(s) in range(48,58) or s == ".")
-       
+        def isSignPrefix(s):
+            def previousTokenIsNumber():
+                return isinstance(finalList[tokensSoFar - 1], float)
+            
+            tokensSoFar = len(finalList)
+            isSign = s in ['+','-']
+            isStartOfNewToken = temp == ""
+            isFirstToken = tokensSoFar == 0
+            return isSign and isStartOfNewToken and (isFirstToken or not previousTokenIsNumber())
         
+        def isNumeric(s):
+            return isSignPrefix(s) or (ord(s) in range(48,58) or s == ".")
+               
         for x in range(0, len(strList)):
             if isNumeric(strList[x]):
                 temp = temp + strList[x]
@@ -48,12 +57,12 @@ class Parser:
         acc = None
         operator = None        
         
-        def isoperator(s):
+        def isOperator(s):
             return s in ['+','-','*','/']
         
         toks = Parser.tokens(s)
         for tok in toks:
-            if isoperator(tok):
+            if isOperator(tok):
                 operator = tok
             else: # Otherwise, assume that tok is a number
                 if acc is None:
