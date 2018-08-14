@@ -30,14 +30,12 @@ class Parser:
                 finalList.append(s)
                 
         def isSignPrefix(s):
-            def previousTokenIsNumber():
-                return isinstance(finalList[tokensSoFar - 1], float)
-            
             tokensSoFar = len(finalList)
             isSign = s in ['+','-']
             isStartOfNewToken = temp == ""
-            isFirstToken = tokensSoFar == 0
-            return isSign and isStartOfNewToken and (isFirstToken or not previousTokenIsNumber())
+            followsANumber = tokensSoFar > 0 and isinstance(finalList[tokensSoFar - 1], float)
+            
+            return isSign and isStartOfNewToken and not followsANumber
         
         def isNumeric(s):
             return isSignPrefix(s) or (ord(s) in range(48,58) or s == ".")
