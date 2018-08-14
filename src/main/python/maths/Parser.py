@@ -51,6 +51,16 @@ class Parser:
         record(temp)
         return finalList
     
+    def newExpression(l,r,operator):
+        if operator == "+":
+            return Add(l, r)
+        elif operator == "-":
+            return Subtract(l, r)
+        elif operator == "*":
+            return Multiply(l, r)
+        elif operator == "/":
+            return Divide(l, r)
+        
     def parse(s):
         acc = None
         operator = None        
@@ -68,14 +78,7 @@ class Parser:
                 elif operator == None:
                     raise ValueError("No operator found before " + tok)
                 else:
-                    if operator == "+":
-                        acc = Add(acc, tok)
-                    elif operator == "-":
-                        acc =  Subtract(acc, tok)
-                    elif operator == "*":
-                        acc =  Multiply(acc, tok)
-                    elif operator == "/":
-                        acc =  Divide(acc, tok)
+                    acc = Parser.newExpression(acc,tok,operator)
  
                 operator = None
             
