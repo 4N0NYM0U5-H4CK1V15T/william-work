@@ -50,7 +50,7 @@ class Parser:
         
         record(temp)
         return finalList
-    
+
     def newExpression(l,r,operator):
         if operator == "+":
             return Add(l, r)
@@ -83,5 +83,3 @@ class Parser:
                 operator = None
             
         return acc
-        
-        
